@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Place for You</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: radial-gradient(ellipse at top, #29203e 0%, #100e1c 55%, #080810 100%);
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.65;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.7); }
+    50% { opacity: 1; transform: scale(1.4); }
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.eyebrow {
+    color: #d5a9d9;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 11px;
+    margin-bottom: 22px;
+}
+
+h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(42px, 8vw, 76px);
+    font-weight: normal;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    background: linear-gradient(120deg, #fff, #e9b9e8, #b8c8ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
+    color: #c5bfd1;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 36px;
+}
+
+button {
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 50px;
+    padding: 16px 30px;
+    color: white;
+    background: linear-gradient(120deg, #8b5ca8, #6656a8);
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(163,112,208,0.3);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 45px rgba(183,135,230,0.55);
+}
+
+.message {
+    max-width: 520px;
+    margin-top: 35px;
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 22px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    line-height: 1.9;
+    color: #eee7f4;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.8s, transform 0.8s;
+    display: none;
+}
+
+.message.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.signature {
+    margin-top: 20px;
+    color: #d5a9d9;
+    font-family: Georgia, serif;
+    font-style: italic;
+}
+
+footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 18px;
+    color: #80798e;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 500px) {
+    .message {
+        padding: 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="stars" id="stars"></div>
+
+<main>
+    <div class="eyebrow">A little something for you</div>
+
+    <h1>A Little Place<br>for You.</h1>
+
+    <p class="subtitle">
+        Out of all the things on the internet,
+        I wanted to make one little corner that was just for you.
+    </p>
+
+    <button id="revealButton">Open your surprise ✦</button>
+
+    <section class="message" id="message">
+        <p>
+            I made this little website because I wanted to give you
+            something different. You make my days better, and I'm
+            really happy that you're in my life. you mean more than
+	    the entire world to me I
+	    would go to the end of the earth just for you thank you :3
+        </p>
+
+        <p style="margin-top: 16px;">
+            I hope this makes you smile. You deserve good things.
+        </p>
+
+        <div class="signature">love you,</div>
+        <div class="signature">signed Chris</div>
+    </section>
+</main>
+
+<footer>MADE JUST FOR YOU · 2026</footer>
+
+<script>
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 100; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.animationDelay = Math.random() * 3 + "s";
+    star.style.animationDuration = (2 + Math.random() * 4) + "s";
+    stars.appendChild(star);
+}
+
+const button = document.getElementById("revealButton");
+const message = document.getElementById("message");
+
+button.addEventListener("click", () => {
+    message.style.display = "block";
+
+    requestAnimationFrame(() => {
+        message.classList.add("show");
+    });
+
+    button.textContent = "A little reminder for you ✦";
+    button.disabled = true;
+});
+</script>
+</body>
+</html>
